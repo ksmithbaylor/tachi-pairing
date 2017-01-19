@@ -1,0 +1,11 @@
+.Dev {
+  height: 6em;
+  width: 6em;
+  margin: 0.5em;
+  text-align: center;
+}
+
+.Dev-name {
+  display: inline-block;
+  line-height: 6em;
+}

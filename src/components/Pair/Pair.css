@@ -1,0 +1,15 @@
+.Pair {
+  flex: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  width: 14.5em;
+  min-height: 7em;
+  border: 1px solid black;
+  margin: 0.5em;
+}
+
+.Pair .Dev {
+  flex: none;
+}
