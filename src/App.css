@@ -5,6 +5,7 @@
 .App-devs-container {
   display: flex;
   flex-wrap: wrap;
+  min-height: 7em;
 }
 
 .App-pairs-container {

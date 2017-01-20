@@ -20,6 +20,7 @@ class Pair extends React.Component {
 
     return connectDropTarget(
       <div className="Pair" style={{
+        padding: `${paddingFor(devs.length)}em 0em`,
         backgroundColor: isOver ? '#FFEB3B' : 'white'
       }}>
         {devs.map((dev, i) =>
@@ -28,6 +29,12 @@ class Pair extends React.Component {
       </div>
     );
   }
+}
+
+function paddingFor(numDevs) {
+  console.log(numDevs);
+  const rows = Math.ceil(numDevs / 2);
+  return Math.max(0, rows - 1) * 0.5;
 }
 
 export default DropTarget('Dev', devTarget, (connect, monitor) => ({

@@ -26,7 +26,7 @@ class Dev extends React.Component {
     return connectDragSource(
       <div className="Dev" style={{
         backgroundColor: color,
-        border: isDragging ? '2px dotted #333' : '2px solid #555',
+        outline: isDragging ? '2px dotted #333' : '2px solid #555',
         opacity: isDragging ? '0.4' : 'initial'
       }}>
         <span className="Dev-name">{name}</span>

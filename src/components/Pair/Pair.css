@@ -4,9 +4,9 @@
   flex-wrap: wrap;
   align-items: center;
   align-content: center;
-  width: 14.5em;
+  width: 14em;
   min-height: 7em;
-  border: 1px solid black;
+  outline: 1px solid black;
   margin: 0.5em;
 }
 
