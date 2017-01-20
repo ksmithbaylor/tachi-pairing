@@ -9,14 +9,13 @@ import './Pair.css';
 const devTarget = {
   drop(props, monitor, component) {
     const dev = monitor.getItem();
-    console.log('drop', dev);
     addPair(dev, props.index);
   }
 };
 
 class Pair extends React.Component {
   render() {
-    const { devs, connectDropTarget, isOver, index } = this.props;
+    const { devs, connectDropTarget, isOver } = this.props;
 
     return connectDropTarget(
       <div className="Pair" style={{
@@ -32,7 +31,6 @@ class Pair extends React.Component {
 }
 
 function paddingFor(numDevs) {
-  console.log(numDevs);
   const rows = Math.ceil(numDevs / 2);
   return Math.max(0, rows - 1) * 0.5;
 }

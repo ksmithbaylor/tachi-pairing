@@ -7,7 +7,6 @@ import './Dev.css';
 
 const devSource = {
   beginDrag(props) {
-    console.log('drag', props.dev);
     return props.dev;
   },
 

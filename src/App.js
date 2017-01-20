@@ -10,7 +10,11 @@ import './App.css';
 
 class App extends React.Component {
   render() {
-    const { devs, pairs } = this.props;
+    const { devs, pairs, loading } = this.props;
+
+    if (loading) {
+      return <span>Loading...</span>;
+    }
 
     return (
       <div className="App">

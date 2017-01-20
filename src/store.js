@@ -1,27 +1,30 @@
+import API from './api';
+
 ////////////////////////////////////////////////////////////////////////////////
-// State
+// Stateful variables
 
-const initialDevs = [
-  { name: 'Chuck', color: '#B2EBF2' },
-  { name: 'Dave', color: '#F8BBD0' },
-  { name: 'Eric', color: '#D1C4E9' },
-  { name: 'Evan', color: '#C8E6C9' },
-  { name: 'Garey', color: '#FFCDD2' },
-  { name: 'John', color: '#D7CCC8' },
-  { name: 'Julie', color: '#B2DFDB' },
-  { name: 'Kevin', color: '#BBDEFB' },
-  { name: 'Kiana', color: '#FFE0B2' }
-];
-const initialPairs = Array.from(Array(initialDevs.length)).map(_ => []);
-
-let devs = initialDevs;
-let pairs = initialPairs;
+let initialState = {},
+    pairs = [],
+    devs = [],
+    loading = true;
 
 let observer = null;
 
-function emitChange() {
-  pairs = filledFirst(pairs);
-  observer({ pairs, devs });
+let api = new API();
+
+////////////////////////////////////////////////////////////////////////////////
+// Public API
+
+export async function init() {
+  initialState = await api.get('initialState');
+  pairs = await api.get('pairs');
+  devs = await api.get('devs');
+  if (!devs) {
+    devs = pairs ? [] : initialState.devs;
+  }
+  pairs = pairs ? addEmptyPairsTo(pairs) : emptyPairs(devs);
+  loading = false;
+  emitChange();
 }
 
 export function observe(o) {
@@ -51,9 +54,43 @@ export function unpair(dev) {
 }
 
 export function reset() {
-  pairs = initialPairs;
-  devs = initialDevs;
+  devs = initialState.devs;
+  pairs = emptyPairs(devs);
   emitChange();
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Helpers
+
+function emitChange() {
+  pairs = filledFirst(pairs);
+  if (!loading) {
+    api.setAll({ devs, pairs });
+  }
+  observer({ devs, pairs, loading });
+}
+
+function emptyPairs(devs) {
+  return Array.from(Array(devs.length)).map(_ => []);
+}
+
+function addEmptyPairsTo(pairs) {
+  if (!pairs) return pairs;
+
+  for (let i = 0; i < initialState.devs.length; i++) {
+    console.log(`pairs[${i}]:`, pairs[i]);
+    if (!pairs[i]) {
+      pairs[i] = [];
+    }
+  }
+
+  return pairs;
+}
+
+function dedupe(devs, pairs) {
+  return devs.filter(dev =>
+    pairs.some(pair => pair.some(is(dev)))
+  );
 }
 
 function filledFirst(pairs) {
