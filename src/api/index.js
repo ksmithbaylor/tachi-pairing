@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 import config from './config';
+import { toFirebase, fromFirebase } from './conversions';
 
 export default class API {
   db = null;
@@ -10,18 +11,24 @@ export default class API {
   }
 
   set(ref, value) {
-    this.db.ref(ref).set(value);
+    this.db.ref(ref).set(toFirebase(value));
   }
 
   get(ref) {
     return this.db
       .ref(ref)
       .once('value')
-      .then(snapshot => snapshot.val());
+      .then(snapshot => fromFirebase(snapshot.val()));
   }
 
   setAll({ devs, pairs }) {
-    this.db.ref('devs').set(devs);
-    this.db.ref('pairs').set(pairs);
+    this.set('pairs', pairs);
+    this.set('devs', devs);
+  }
+
+  subscribe(ref, cb) {
+    this.db.ref(ref).on('value', snapshot => {
+      cb(fromFirebase(snapshot.val()));
+    });
   }
 }
