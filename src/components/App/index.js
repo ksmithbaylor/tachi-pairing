@@ -2,9 +2,9 @@ import React from 'react';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-import Dev from './components/Dev';
-import Pair from './components/Pair';
-import { reset } from './store';
+import Dev from '../Dev';
+import Pair from '../Pair';
+import { reset } from '../../store';
 
 import './App.css';
 
