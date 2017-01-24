@@ -19,7 +19,12 @@ const devSource = {
 
 class Dev extends React.Component {
   render() {
-    const { dev, connectDragSource, isDragging } = this.props;
+    const {
+      dev,
+      connectDragSource = x => x,
+      isDragging
+    } = this.props;
+
     const { name, color } = dev;
 
     return connectDragSource(
@@ -38,3 +43,4 @@ export default DragSource('Dev', devSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging()
 }))(Dev);
+export { Dev };

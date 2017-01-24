@@ -12,7 +12,7 @@ class App extends React.Component {
   render() {
     const { devs, pairs, loading } = this.props;
 
-    if (loading) {
+    if (loading || !devs || !pairs) {
       return <span>Loading...</span>;
     }
 
@@ -36,3 +36,4 @@ class App extends React.Component {
 }
 
 export default DragDropContext(HTML5Backend)(App);
+export { App };
