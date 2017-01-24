@@ -1,34 +1,17 @@
-import API from './api';
+import API from '../api';
+import initialDevs from './devs';
+
+const initialState = {
+  devs: initialDevs,
+  pairs: emptyPairs(initialDevs)
+};
 
 ////////////////////////////////////////////////////////////////////////////////
 // Stateful variables
 
-const initialDevs = [
-  { "color": "#B2EBF2", "name": "Chuck" },
-  { "color": "#F8BBD0", "name": "Dave" },
-  { "color": "#D1C4E9", "name": "Eric" },
-  { "color": "#C8E6C9", "name": "Evan" },
-  { "color": "#FFCDD2", "name": "Garey" },
-  { "color": "#D7CCC8", "name": "John" },
-  { "color": "#B2DFDB", "name": "Julie" },
-  { "color": "#BBDEFB", "name": "Kevin" },
-  { "color": "#FFE0B2", "name": "Kiana" }
-];
-const initialPairs = emptyPairs(initialDevs);
-const initialState = {
-  devs: initialDevs,
-  pairs: initialPairs
-};
-const emptyState = {
-  devs: [],
-  pairs: []
-};
-let state = emptyState;
-
+let state = initialState;
 let loading = true;
-
 let observer = null;
-
 let api = new API();
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -36,8 +19,9 @@ let api = new API();
 
 export async function init() {
   api.set('initialState', initialState);
-  state = await api.get('state')
+  state = await api.get('state');
   loading = false;
+
   emitChange(true);
 }
 
@@ -57,6 +41,7 @@ export function addPair(dev, index) {
     };
     state.pairs[index].push(dev);
   }
+
   emitChange();
 }
 
@@ -66,37 +51,28 @@ export function unpair(dev) {
       pairs: remove(state.pairs, dev),
       devs: state.devs.concat(dev)
     };
+
     emitChange();
   }
 }
 
 export function reset() {
   state = initialState;
+
   emitChange();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// Helpers
+// "Private" API
 
 function emitChange(skipAPI) {
-  state.pairs = layout(
-    onlyNecessaryPairs(state.pairs, initialState.devs),
-    3
-  );
+  state.pairs = layout(onlyNecessaryPairs(state.pairs, initialState.devs), 3);
+
   if (!loading && !skipAPI) {
     api.set('state', state);
   }
+
   observer({ ...state, loading });
-}
-
-function emptyPairs(devs) {
-  return Array.from(Array(devs.length)).map(_ => []);
-}
-
-function rows(pairs) {
-  return pairs
-    .map(pair => pair.length)
-    .map(length => Math.max(1, Math.ceil(length / 2)))
 }
 
 function onlyNecessaryPairs(pairs, initialDevs) {
@@ -118,14 +94,6 @@ function onlyNecessaryPairs(pairs, initialDevs) {
     }
   }
   return pairs;
-}
-
-function sum(a, b) {
-  return a + b;
-}
-
-function concat(a, b) {
-  return a.concat(b);
 }
 
 function layout(pairs, columnHeight) {
@@ -152,6 +120,27 @@ function layout(pairs, columnHeight) {
     }
   }
   return columns.reduce(concat, []);
+}
+
+function emptyPairs(devs) {
+  return Array.from(Array(devs.length)).map(_ => []);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Helpers
+
+function rows(pairs) {
+  return pairs
+    .map(pair => pair.length)
+    .map(length => Math.max(1, Math.ceil(length / 2)))
+}
+
+function sum(a, b) {
+  return a + b;
+}
+
+function concat(a, b) {
+  return a.concat(b);
 }
 
 function remove(pairs, dev) {
