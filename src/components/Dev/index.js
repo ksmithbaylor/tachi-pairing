@@ -20,7 +20,7 @@ const devSource = {
 class Dev extends React.Component {
   render() {
     const {
-      dev,
+      dev = { name: '[Name]', color: '#fff'},
       connectDragSource = x => x,
       isDragging
     } = this.props;
