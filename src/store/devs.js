@@ -5,7 +5,6 @@ export default [
   { "color": "#C8E6C9", "name": "Evan" },
   { "color": "#FFCDD2", "name": "Garey" },
   { "color": "#D7CCC8", "name": "John" },
-  { "color": "#B2DFDB", "name": "Julie" },
   { "color": "#BBDEFB", "name": "Kevin" },
   { "color": "#FFE0B2", "name": "Kiana" }
 ];
