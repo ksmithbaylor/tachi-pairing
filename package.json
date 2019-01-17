@@ -8,6 +8,7 @@
   "dependencies": {
     "enzyme": "^2.7.1",
     "firebase": "^3.6.6",
+    "firebase-tools": "^6.3.0",
     "jest-enzyme": "^2.1.0",
     "react": "^15.4.2",
     "react-addons-test-utils": "^15.4.2",
@@ -18,7 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "npm run build && firebase deploy --public build",
+    "deploy": "yarn build && yarn firebase deploy --public build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
