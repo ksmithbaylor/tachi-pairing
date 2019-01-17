@@ -31,7 +31,8 @@ class Dev extends React.Component {
       <div className="Dev" style={{
         backgroundColor: color,
         outline: isDragging ? '2px dotted #333' : '2px solid #555',
-        opacity: isDragging ? '0.4' : 'initial'
+        opacity: isDragging ? '0.4' : 'initial',
+        cursor: isDragging ? 'grabbing' : 'grab'
       }}>
         <span className="Dev-name">{name}</span>
       </div>
