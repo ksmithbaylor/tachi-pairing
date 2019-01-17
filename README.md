@@ -1,4 +1,4 @@
-# velocity-pairing
+# tachi-pairing
 
 Deployed [here](https://tachi-pairing.firebaseapp.com).
 
