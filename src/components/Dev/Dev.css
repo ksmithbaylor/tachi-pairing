@@ -3,6 +3,8 @@
   width: 6em;
   margin: 0.5em;
   text-align: center;
+  user-select: none;
+  cursor: default;
 }
 
 .Dev-name {
