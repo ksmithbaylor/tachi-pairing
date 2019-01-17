@@ -1,6 +1,6 @@
 # velocity-pairing
 
-Deployed [here](https://velocity-pairing.firebaseapp.com).
+Deployed [here](https://tachi-pairing.firebaseapp.com).
 
 This app uses Firebase for persistence, and is implemented as a front-end React application. The Firebase project is under my (Kevin's) Google account, but we can move it if we want.
 

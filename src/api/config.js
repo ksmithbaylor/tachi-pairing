@@ -1,7 +1,8 @@
 export default {
-  apiKey: "AIzaSyBqK17-Q1Qc4C43bSBMGJ52vwyV8tHhu48",
-  authDomain: "velocity-pairing.firebaseapp.com",
-  databaseURL: "https://velocity-pairing.firebaseio.com",
-  storageBucket: "velocity-pairing.appspot.com",
-  messagingSenderId: "876352601550"
+  apiKey: "AIzaSyAEO3NWcwjBzIt4zLUlmuGMEOMux7u-YuU",
+  authDomain: "tachi-pairing.firebaseapp.com",
+  databaseURL: "https://tachi-pairing.firebaseio.com",
+  projectId: "tachi-pairing",
+  storageBucket: "",
+  messagingSenderId: "799111315511"
 };
