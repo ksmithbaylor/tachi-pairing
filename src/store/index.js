@@ -20,6 +20,10 @@ let api = new API();
 export async function init() {
   api.set('initialState', initialState);
   state = await api.get('state');
+  if (!state) {
+    await api.set('state', initialState);
+    state = initialState;
+  }
   loading = false;
 
   emitChange(true);
