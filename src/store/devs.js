@@ -4,7 +4,7 @@ export default [
   { 'name': 'Elisabeth', 'color': '#32A470' },
   { 'name': 'Garey', 'color': 'white' },
   { 'name': 'Gemille', 'color': 'white' },
-  { 'name': 'Kevin', 'color': 'white' },
+  { 'name': 'Kevin', 'color': '#185F91', textColor: 'white' },
   { 'name': 'Ryan', 'color': 'white' },
   { 'name': 'Sunny', 'color': 'white' }
 ];

@@ -25,10 +25,11 @@ class Dev extends React.Component {
       isDragging
     } = this.props;
 
-    const { name, color } = dev;
+    const { name, color, textColor = 'black' } = dev;
 
     return connectDragSource(
       <div className="Dev" style={{
+        color: textColor,
         backgroundColor: color,
         outline: isDragging ? '2px dotted #333' : '2px solid #555',
         opacity: isDragging ? '0.4' : 'initial',
